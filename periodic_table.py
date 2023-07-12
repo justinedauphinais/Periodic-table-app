@@ -4,15 +4,34 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+from kivy.uix.widget import Widget
+from kivy.properties import (
+    NumericProperty, ReferenceListProperty, ObjectProperty
+)
+from kivy.core.window import Window
 
-class PeriodicTable(App):
+class Element(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Window.bind(mouse_pos = self.on_mouseover)
+
+    def on_mouseover(self, *args):
+        print("enter")
+
+class PeriodicTable(Widget):
+    helium = ObjectProperty(None)
+
+    pass
+
+
+class TableApp(App):
     def build(self):
-        self.window = GridLayout()
-        self.window.cols = 1
-        self.window.size_hint = (0.6, 0.7)
-        self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
-        
-        return self.window
+        return PeriodicTable()
 
 if __name__ == "__main__":
-    PeriodicTable().run()
+    TableApp().run()
+
+# Colors !!
+# green  : 0.46, 0.42, 0.03
+# yellow : 0.85, 0.62, 0.09
+# white  : 0.91, 0.91, 0.91
